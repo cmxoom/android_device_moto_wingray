@@ -23,6 +23,7 @@ mkdir -p ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/app/MotoLocationProxy.apk -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/app/StingrayProgramMenu.apk -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/app/StingrayProgramMenuSystem.apk -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
+unzip -j -o ../../../${DEVICE}_update.zip system/app/UsbHelper.apk -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/bin/akmd2 -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/bin/batch -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/bin/brcm_guci_drv -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
@@ -58,8 +59,11 @@ unzip -j -o ../../../${DEVICE}_update.zip system/etc/motorola/12m/tcmd_leds.cfg 
 unzip -j -o ../../../${DEVICE}_update.zip system/etc/security/suplcerts.bks -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/etc/voip_aud_params.bin -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/etc/wifi/bcm4329.cal -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
+unzip -j -o ../../../${DEVICE}_update.zip system/lib/egl/libEGL_perfhud.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/lib/egl/libEGL_tegra.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
+unzip -j -o ../../../${DEVICE}_update.zip system/lib/egl/libGLESv1_CM_perfhud.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/lib/egl/libGLESv1_CM_tegra.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
+unzip -j -o ../../../${DEVICE}_update.zip system/lib/egl/libGLESv2_perfhud.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/lib/egl/libGLESv2_tegra.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/lib/hw/camera.stingray.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/lib/hw/gps.stingray.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
@@ -155,8 +159,11 @@ PRODUCT_COPY_FILES += \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/suplcerts.bks:system/etc/security/suplcerts.bks \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/voip_aud_params.bin:system/etc/voip_aud_params.bin \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/bcm4329.cal:system/etc/wifi/bcm4329.cal \\
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libEGL_perfhud.so:system/lib/egl/libEGL_perfhud.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libEGL_tegra.so:system/lib/egl/libEGL_tegra.so \\
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libGLESv1_CM_perfhud.so:system/lib/egl/libGLESv1_CM_perfhud.so \\ 
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libGLESv1_CM_tegra.so:system/lib/egl/libGLESv1_CM_tegra.so \\
+    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libGLESv2_perfhud.so:system/lib/egl/libGLESv2_perfhud.so \\ 
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/libGLESv2_tegra.so:system/lib/egl/libGLESv2_tegra.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/camera.stingray.so:system/lib/hw/camera.stingray.so \\
     vendor/__MANUFACTURER__/__DEVICE__/proprietary/gps.stingray.so:system/lib/hw/gps.stingray.so \\
@@ -202,7 +209,7 @@ PRODUCT_PACKAGES += \\
     MotoLocationProxy \\
     StingrayProgramMenu \\
     StingrayProgramMenuSystem \\
-
+    UsbHelper
 EOF
 
 (cat << EOF) | sed s/__DEVICE__/$DEVICE/g | sed s/__MANUFACTURER__/$MANUFACTURER/g > ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/Android.mk
@@ -256,6 +263,17 @@ include \$(BUILD_PREBUILT)
 include \$(CLEAR_VARS)
 
 LOCAL_MODULE := StingrayProgramMenuSystem
+LOCAL_SRC_FILES := \$(LOCAL_MODULE).apk
+LOCAL_MODULE_CLASS := APPS
+LOCAL_MODULE_TAGS := optional
+LOCAL_CERTIFICATE := PRESIGNED
+LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
+include \$(BUILD_PREBUILT)
+
+# UsbHelper
+include \$(CLEAR_VARS)
+
+LOCAL_MODULE := UsbHelper
 LOCAL_SRC_FILES := \$(LOCAL_MODULE).apk
 LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_TAGS := optional
