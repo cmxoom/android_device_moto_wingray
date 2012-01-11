@@ -61,13 +61,10 @@ adb pull /system/etc/voip_aud_params.bin ../../../vendor/$MANUFACTURER/$DEVICE/p
 adb pull /system/etc/wifi/bcm4329.cal ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/bcm4329.cal
 adb pull /system/lib/egl/libEGL_perfhud.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libEGL_perfhud.so
 adb pull /system/lib/egl/libEGL_tegra.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libEGL_tegra.so
-adb pull /system/lib/egl/libGLESv1_CM_perfhud.so 
-../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libGLESv1_CM_perfhud.so
-adb pull /system/lib/egl/libGLESv1_CM_tegra.so 
-../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libGLESv1_CM_tegra.so
+adb pull /system/lib/egl/libGLESv1_CM_perfhud.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libGLESv1_CM_perfhud.so
+adb pull /system/lib/egl/libGLESv1_CM_tegra.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libGLESv1_CM_tegra.so
 adb pull /system/lib/egl/libGLESv2_tegra.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libGLESv2_tegra.so
-adb pull /system/lib/egl/libGLESv2_perfhud.so 
-../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libGLESv2_perfhud.so
+adb pull /system/lib/egl/libGLESv2_perfhud.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/libGLESv2_perfhud.so
 adb pull /system/lib/hw/camera.stingray.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/camera.stingray.so
 adb pull /system/lib/hw/gps.stingray.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/gps.stingray.so
 adb pull /system/lib/hw/gralloc.tegra.so ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/gralloc.tegra.so
